@@ -35,13 +35,15 @@ const PLATFORM_DATA = [
 ]
 
 func _ready() -> void:
-
+	print("Spawner starting")
 	spawn_all_platforms()
+	print("Spawner complete")
 
 func spawn_all_platforms():
 	for data in PLATFORM_DATA:
 		# 1. Instantiate the scene template
 		var platform_instance = PLATFORM_SCENE.instantiate()
+		print(platform_instance)
 		
 		# 2. Set the built-in position property
 		platform_instance.position = Vector2(data.x, data.y)
@@ -49,10 +51,10 @@ func spawn_all_platforms():
 		# 3. Set the custom exported variables defined in platform.gd
 		platform_instance.platform_width = data.width
 		platform_instance.platform_height = data.height
-		# Set movement variables too, if they are defined in the data
+		
+		#Sets movement variables for platforms from data
 		platform_instance.max_travel = data.travel
 		platform_instance.cycle_speed = data.speed
 		
-		# 4. Add the platform to the scene tree
-		# This calls the platform's _ready() function, which finalizes the size setup.
+		#Add platform to main scene
 		get_parent().add_child(platform_instance)
