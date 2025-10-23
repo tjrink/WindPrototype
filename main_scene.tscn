@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://0r11mqgi8vn5"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Sky" type="ColorRect" parent="World"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player" type="CharacterBody2D" parent="World"]
+
+[node name="CloudSpawner" type="Node" parent="World"]
+
+[node name="PlatformSpawner" type="Node" parent="World"]
+
+[node name="Ground" type="StaticBody2D" parent="World"]
+
+[node name="Camera" type="Camera2D" parent="."]
