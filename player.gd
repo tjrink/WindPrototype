@@ -1,25 +1,69 @@
 extends CharacterBody2D
 
+# Physics & Movement Constants
+const GRAVITY_FORCE = 800.0
+const BASE_SPEED = 300.0
+const BASE_JUMP = -750.0
+const AIR_DRAG_FACTOR = 0.3
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPRINT_DURATION = 1.5
+const SPRINT_SPEED_MULTIPLIER = 3.0
+const SPRINT_JUMP_MULTIPLIER = 1.5
+var sprint_time_remaining: float = 0.0
+var sprints_available: int = 2
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	#Gravity
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+		velocity.y += GRAVITY_FORCE * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.y = 0.0
 
+	#Jump
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = get_jump_velocity()
+	
+	#Applies sprint mode
+	if Input.is_action_just_pressed("ui_sprint"):
+		if sprints_available > 0:
+			sprint_time_remaining = SPRINT_DURATION
+			sprints_available -= 1
+
+	#Input direction
+	var direction := Input.get_axis("ui_left", "ui_right")
+	var current_speed = get_current_speed()
+	
+	if direction:
+		velocity.x = direction * current_speed
+	else:
+		#Deceleration
+		velocity.x = move_toward(velocity.x, 0.0, current_speed)
+
+	#Gets and applies wind force
+	var wind_force = Wind.get_wind_speed_at_y(position.y)
+	velocity.x += (wind_force * AIR_DRAG_FACTOR) * delta
+	
+	#Move player
 	move_and_slide()
+	
+	#Reduce sprint timer
+	update_sprint_timer(delta)
+
+
+#Track the time remaining in current sprint mode
+func update_sprint_timer(delta: float):
+	if sprint_time_remaining > 0.0:
+		sprint_time_remaining -= delta
+
+#Returns current speed based on sprint status
+func get_current_speed() -> float:
+	if sprint_time_remaining > 0.0:
+		return BASE_SPEED * SPRINT_SPEED_MULTIPLIER
+	return BASE_SPEED
+
+#Returns jump height based on sprint status
+func get_jump_velocity() -> float:
+	if sprint_time_remaining > 0.0:
+		return BASE_JUMP * SPRINT_JUMP_MULTIPLIER
+	return BASE_JUMP

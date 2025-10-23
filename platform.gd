@@ -1,11 +1,10 @@
 extends StaticBody2D
+# ... ALL VARIABLES ...
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	print("✅ PLATFORM _READY() FIRED! Instantiation SUCCESSFUL.")
+	#setup_initial_size()
+	
+	# ... comment out the rest of _ready() for now ...
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# ... COMMENT OUT ALL OTHER FUNCTIONS LIKE _process, shrink_platform, etc. ...
