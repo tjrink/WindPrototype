@@ -16,15 +16,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PlatformCollision" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_mi635")
 
-[node name="Area2D" type="Area2D" parent="PlatformCollision"]
-position = Vector2(-69, 11)
+[node name="PlatformArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformCollision/Area2D"]
-position = Vector2(69, -11)
+[node name="AreaCollision" type="CollisionShape2D" parent="PlatformArea"]
 shape = SubResource("RectangleShape2D_s8bxr")
+debug_color = Color(0.80479753, 0.3022646, 0.7281198, 0.41960785)
 
-[connection signal="body_entered" from="PlatformCollision/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="PlatformCollision/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="PlatformArea" to="." method="_on_platform_area_body_entered"]
+[connection signal="body_exited" from="PlatformArea" to="." method="_on_platform_area_body_exited"]
