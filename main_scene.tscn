@@ -35,14 +35,10 @@ shape = SubResource("RectangleShape2D_2c62f")
 debug_color = Color(0.9104701, 0.19811219, 0.5588026, 0.41960785)
 
 [node name="Player" parent="World" instance=ExtResource("3_gyfs4")]
-position = Vector2(-147, -32)
+position = Vector2(-570, 260)
 
 [node name="CloudSpawner" parent="World" instance=ExtResource("1_2c62f")]
 
 [node name="PlatformSpawner" parent="World" instance=ExtResource("2_gyfs4")]
-platform_width = null
-platform_height = null
-max_travel = null
-cycle_speed = null
 
 [node name="Camera" type="Camera2D" parent="."]

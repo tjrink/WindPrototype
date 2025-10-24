@@ -11,7 +11,7 @@ const PLATFORM_DATA = [
 	{ 
 		"x": 0.0,      # Center of screen
 		"y": 200.0,    # Above ground (ground is at 300)
-		"width": 300.0, 
+		"width":300.0, 
 		"height": 50.0, 
 		"travel": 50.0, 
 		"speed": 1.0 

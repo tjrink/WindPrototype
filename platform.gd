@@ -35,3 +35,11 @@ func setup_initial_size():
 	
 	# Set a visible color (brown/tan for platforms)
 	rect.color = Color(0.6, 0.4, 0.2, 1.0)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("Player on")
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	print("Body off") # Replace with function body.
