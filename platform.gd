@@ -1,10 +1,16 @@
 extends StaticBody2D
 
-# Exported variables that can be set by the spawner
-@export var platform_width: float = 100.0
-@export var platform_height: float = 50.0
-@export var max_travel: float = 0.0
-@export var cycle_speed: float = 1.0
+# Exported variables that can be set by spawning script
+@export var platform_width: float = 100.0 #Start x
+@export var platform_height: float = 50.0 #Start Y position
+@export var max_travel: float = 150.0 #Amplitude - how much variance can the platform see from it's starting point
+@export var cycle_speed: float = 1.0 #Cycle frequency
+
+@export var initial_offset: float = 0.0 # Use this to stagger movement if you have multiple platforms
+
+#Management of platform sate
+var time_elapsed: float = 0.0
+var start_y: float = 0.0
 
 # Platform sizing/resizing properties
 var shrink_rate = 50.0 # Units per second to shrink
@@ -22,6 +28,9 @@ var platform_shape: RectangleShape2D
 var area_shape: RectangleShape2D
 
 func _ready() -> void:
+	start_y = position.y #Sets tracking to internal position
+	time_elapsed = initial_offset #Sets tracking to initial offset
+	
 	# Set the maximum size based on the initial width set by the spawner
 	max_width = platform_width
 	_setup_initial_shapes()
@@ -101,6 +110,13 @@ func grow_platform(delta: float):
 
 
 func _process(delta: float):
+	
+	#Moves platforms across sine wave
+	time_elapsed+=delta #Keeps time_elapsed in sync with game time
+	var y_offset = sin(time_elapsed * cycle_speed) * max_travel #Calculate offset in sine wave
+	position.y = start_y + y_offset #Moves platform
+	
+
 	#Shrinks the platform when the player is on it, grows it when player is off
 	if player_is_on:
 		shrink_platform(delta)
