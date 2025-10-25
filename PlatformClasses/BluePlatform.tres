@@ -7,6 +7,6 @@ script = ExtResource("1_c254b")
 width = 100.0
 height = 20.0
 amplitude = 200.0
-speed = 2.0
+speed = 0.5
 platform_color = Color(9.62615e-08, 0, 0.7733961, 1)
 metadata/_custom_type_script = "uid://fakd8iwkqqmo"

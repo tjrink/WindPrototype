@@ -63,9 +63,13 @@ func _setup_initial_shapes():
 	var rect = $PlatformRect
 	rect.color = platform_color
 	
+			#Sets a minimum size where the player can stand on the platform to prevent camping in the center
+		#If the platform size falls under, collision logic is disabled until it is larger again
+		#TODO: Make platform disappear if under threshold and reappear above a threshold
+	
+	
 	# Apply the initial width to all parts
 	_update_platform_size()
-
 
 # Updats size and location of all nodes in accordance with changing platform size
 func _update_platform_size():
@@ -95,25 +99,25 @@ func shrink_platform(delta: float):
 	if platform_width > min_width:
 		# Decrease width, of the platform
 		platform_width -= shrink_rate * delta
-		
-		#Sets a minimum size where the player can stand on the platform to prevent camping in the center
-		#If the platform size falls under, collision logic is disabled until it is larger again
-		#TODO: Make platform disappear if under threshold and reappear above a threshold
-		if platform_width < FALL_THRESHOLD:
-			collision_layer = 0
-			collision_mask = 0
-		else:
-			collision_layer = 1
-			collision_mask = 1
-
-			
-		_update_platform_size()
+	
+	if platform_width < FALL_THRESHOLD:
+		collision_layer = 0
+		collision_mask = 0
+		visible = false
+				
+	_update_platform_size()
 
 #Grows the platform size when player is not on object
 func grow_platform(delta: float):
 	if platform_width < max_width:
 		platform_width += growth_rate * delta
-		_update_platform_size()
+	
+	if platform_width >= FALL_THRESHOLD:
+		collision_layer = 1
+		collision_mask = 1
+		visible = true
+		
+	_update_platform_size()
 
 
 func _process(delta: float):
