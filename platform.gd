@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends AnimatableBody2D
 
 # Exported variables that can be set by spawning script
 
@@ -40,6 +40,7 @@ func _ready() -> void:
 	# Set the maximum size based on the initial width set by the spawner
 	max_width = platform_width
 	_setup_initial_shapes()
+	sync_to_physics = true
 
 
 # Creates the necessary shapes with initial values

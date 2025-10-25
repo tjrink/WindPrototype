@@ -46,6 +46,11 @@ const PLATFORM_DATA = [
 		"y": 0
 	},
 	{
+		"profile_path":  "res://PlatformClasses/BluePlatform.tres",
+		"x": -500,
+		"y": 50
+	},
+	{
 		"profile_path": "res://PlatformClasses/RedPlatform.tres",
 		"x": 200,
 		"y": 0
