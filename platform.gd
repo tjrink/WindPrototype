@@ -1,11 +1,19 @@
 extends StaticBody2D
 
 # Exported variables that can be set by spawning script
+
+#Platform construction details
 @export var platform_width: float = 100.0 #Start x
 @export var platform_height: float = 50.0 #Start Y position
+@export var platform_color: Color = Color()
+
+#Platform movement details
 @export var max_travel: float = 150.0 #Amplitude - how much variance can the platform see from it's starting point
 @export var cycle_speed: float = 1.0 #Cycle frequency
 
+#Platform change details
+@export var shrink_rate = 50.0 # Units per second to shrink
+@export var growth_rate = 10.0  # Units per second to grow
 @export var initial_offset: float = 0.0 # Use this to stagger movement if you have multiple platforms
 
 #Management of platform sate
@@ -13,8 +21,6 @@ var time_elapsed: float = 0.0
 var start_y: float = 0.0
 
 # Platform sizing/resizing properties
-var shrink_rate = 50.0 # Units per second to shrink
-var growth_rate = 10.0  # Units per second to grow
 const FALL_THRESHOLD: float = 3.0 #platform width at which the player will fall through
 
 var min_width = 1.0 
@@ -53,10 +59,8 @@ func _setup_initial_shapes():
 	area_collision.position = Vector2(0, 0)
 	
 	# Set a visible color 
-	#Brown is used as a placeholder
-	#TODO: This color should be configurable in the platform data const in platform_spawner
 	var rect = $PlatformRect
-	rect.color = Color(0.6, 0.4, 0.2, 1.0)
+	rect.color = platform_color
 	
 	# Apply the initial width to all parts
 	_update_platform_size()
@@ -93,12 +97,14 @@ func shrink_platform(delta: float):
 		
 		#Sets a minimum size where the player can stand on the platform to prevent camping in the center
 		#If the platform size falls under, collision logic is disabled until it is larger again
+		#TODO: Make platform disappear if under threshold and reappear above a threshold
 		if platform_width < FALL_THRESHOLD:
 			collision_layer = 0
 			collision_mask = 0
 		else:
 			collision_layer = 1
 			collision_mask = 1
+
 			
 		_update_platform_size()
 
@@ -114,7 +120,7 @@ func _process(delta: float):
 	#Moves platforms across sine wave
 	time_elapsed+=delta #Keeps time_elapsed in sync with game time
 	var y_offset = sin(time_elapsed * cycle_speed) * max_travel #Calculate offset in sine wave
-	position.y = start_y + y_offset #Moves platform
+	position.y = clamp(start_y + y_offset, -250, 200) #Moves platform
 	
 
 	#Shrinks the platform when the player is on it, grows it when player is off

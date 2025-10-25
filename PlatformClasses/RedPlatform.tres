@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlatformProfile" load_steps=2 format=3 uid="uid://breo4w6dx00u"]
+
+[ext_resource type="Script" uid="uid://fakd8iwkqqmo" path="res://Scripts/platform_class.gd" id="1_3dc7t"]
+
+[resource]
+script = ExtResource("1_3dc7t")
+width = 100.0
+height = 20.0
+amplitude = 50.0
+speed = 10.0
+platform_color = Color(0.28212023, 0.17997113, 0.07479023, 1)
+metadata/_custom_type_script = "uid://fakd8iwkqqmo"

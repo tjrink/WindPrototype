@@ -6,58 +6,81 @@ const PLATFORM_SCENE = preload("res://platform.tscn")
 # Define the level layout data using FLOAT values (e.g., 50.0 instead of 50)
 # NOTE: Y coordinates - smaller Y = higher on screen
 # Ground is at Y=300, so platforms should be ABOVE that (smaller Y values)
+#const PLATFORM_DATA = [
+	## Platform 1: Near the player position for easy testing
+	#{ 
+		#"x": 0.0,      # Center of screen
+		#"y": 0.0,    # Above ground (ground is at 300)
+		#"width":100.0, 
+		#"height": 50.0, 
+		#"travel": 200.0, 
+		#"speed": 2.0,
+		#"color": Color(0.6, 0.4, 0.2, 1.0)
+	#}, 
+	## Platform 2: To the right
+	#{ 
+		#"x": 400.0, 
+		#"y": 100.0,    # Higher up
+		#"width": 200.0, 
+		#"height": 50.0, 
+		#"travel": 100.0, 
+		#"speed": 0.5,
+		#"color": Color(0.6, 0.4, 0.2, 1.0) 
+	#},
+	## Platform 3: To the left
+	#{ 
+		#"x": -400.0, 
+		#"y": 0.0,    # Mid height
+		#"width": 100.0, 
+		#"height": 50.0, 
+		#"travel": 75.0, 
+		#"speed": 1.5,
+		#"color": Color(0.6, 0.4, 0.2, 1.0)
+	#}
+#]
+
 const PLATFORM_DATA = [
-	# Platform 1: Near the player position for easy testing
-	{ 
-		"x": 0.0,      # Center of screen
-		"y": 200.0,    # Above ground (ground is at 300)
-		"width":300.0, 
-		"height": 50.0, 
-		"travel": 50.0, 
-		"speed": 1.0 
-	}, 
-	# Platform 2: To the right
-	{ 
-		"x": 400.0, 
-		"y": 100.0,    # Higher up
-		"width": 300.0, 
-		"height": 50.0, 
-		"travel": 100.0, 
-		"speed": 0.5 
+	{
+		"profile_path": "res://PlatformClasses/BluePlatform.tres",
+		"x": 400,
+		"y": 0
 	},
-	# Platform 3: To the left
-	{ 
-		"x": -400.0, 
-		"y": 150.0,    # Mid height
-		"width": 300.0, 
-		"height": 50.0, 
-		"travel": 75.0, 
-		"speed": 1.5 
+	{
+		"profile_path": "res://PlatformClasses/RedPlatform.tres",
+		"x": 200,
+		"y": 0
 	},
+	{
+		"profile_path": "res://PlatformClasses/BrownPlatform.tres",
+		"x": -100,
+		"y": 0
+	}
 ]
 
 func _ready() -> void:
 	# Use call_deferred to ensure scene tree is fully ready
 	call_deferred("spawn_all_platforms")
 
+#Loops through all platforms listed in the PLATFORM_DATA const and makes a platform with the specifications
 func spawn_all_platforms():
 	
 	for i in range(PLATFORM_DATA.size()):
 		var data = PLATFORM_DATA[i]
-		
-		# 1. Instantiate the scene template
+		var loaded_resource = load(data.profile_path)
+		#Instantiate the scene template
 		var platform_instance = PLATFORM_SCENE.instantiate()
 		
-
-		# 2. Set the built-in position property BEFORE adding to tree
+#
+		#Set the built-in position property BEFORE adding to tree
 		platform_instance.position = Vector2(data.x, data.y)
 		
-		# 3. Set the custom exported variables defined in platform.gd BEFORE adding to tree
-		platform_instance.platform_width = data.width
-		platform_instance.platform_height = data.height
-		platform_instance.max_travel = data.travel
-		platform_instance.cycle_speed = data.speed
+		# Sets clas specific variables before adding tree to parent
+		platform_instance.platform_width = loaded_resource.width
+		platform_instance.platform_height = loaded_resource.height
+		platform_instance.max_travel = loaded_resource.amplitude
+		platform_instance.cycle_speed = loaded_resource.speed
+		platform_instance.platform_color = loaded_resource.platform_color
 		
-		# 4. Add platform to scene tree (this should trigger _ready())
+		#Add platform to scene tree
 		get_parent().add_child(platform_instance)
 		
