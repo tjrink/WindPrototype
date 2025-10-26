@@ -3,16 +3,26 @@ extends Node
 # Preload the platform scene template for efficient instancing
 const TOKEN_SCENE = preload("res://token.tscn")
 
-const MIN_X: float = -500.0
-const MAX_X: float = 500.0
+const MIN_X: float = -650.0
+const MAX_X: float = 650.0
 const MIN_Y: float = -300.0
 const MAX_Y: float = 200.0
+
+var ctr: float = 0.0
+const thresh: float = 5.0
 
 
 func _ready() -> void:
 	# Use call_deferred to ensure scene tree is fully ready
 	call_deferred("spawn_token")
 
+func _process(delta: float) -> void:
+	ctr+=delta
+	
+	if ctr > thresh:
+		spawn_token()
+		ctr = 0.0	
+	
 #Loops through all platforms listed in the PLATFORM_DATA const and makes a platform with the specifications
 func spawn_token():
 	

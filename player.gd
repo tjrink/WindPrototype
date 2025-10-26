@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 
 	#Gets and applies wind force
 	var wind_force = Wind.get_wind_speed_at_y(position.y)
+	print(wind_force)
 	velocity.x += (wind_force * AIR_DRAG_FACTOR) * delta
 	
 	#Move player

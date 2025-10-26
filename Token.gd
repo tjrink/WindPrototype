@@ -30,10 +30,12 @@ func _setup_initial_shapes():
 
 
 func _on_body_entered(body: Node2D) -> void:
+	#Adds 1 to game_score if player enters token
 	if body.is_in_group("player"):
 		game_score+=1
 		print(game_score)
 
 func _on_body_exited(body: Node2D) -> void:
+	#Eliminates token when player exits
 	if body.is_in_group("player"):
 		queue_free()

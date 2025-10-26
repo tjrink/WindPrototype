@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://0r11mqgi8vn5"]
+[gd_scene load_steps=7 format=3 uid="uid://0r11mqgi8vn5"]
 
 [ext_resource type="PackedScene" uid="uid://c7c0jvb7jhp1i" path="res://Spawners/cloud_spawner.tscn" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://b7q5rwvsk8nfp" path="res://Spawners/platform_spawner.tscn" id="2_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://boee26h6hv02k" path="res://player.tscn" id="3_gyfs4"]
 [ext_resource type="Script" uid="uid://bv2q3rfo8o35y" path="res://Spawners/token_spawner.gd" id="4_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://duis0iioy3w7p" path="res://wind.tscn" id="5_hq1ik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(3000, 60)
@@ -43,7 +44,9 @@ position = Vector2(-570, 260)
 
 [node name="PlatformSpawner" parent="World" instance=ExtResource("2_gyfs4")]
 
-[node name="TokenSpawner" type="Node" parent="."]
+[node name="TokenSpawner" type="Node" parent="World"]
 script = ExtResource("4_d5x1h")
+
+[node name="Wind" parent="World" instance=ExtResource("5_hq1ik")]
 
 [node name="Camera" type="Camera2D" parent="."]
