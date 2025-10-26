@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://boa1j05nc0hr8"]
+
+[ext_resource type="Script" uid="uid://pu52rgbjsmg8" path="res://scoreboard_label.gd" id="1_jeshg"]
+
+[node name="Scoreboard" type="CanvasLayer"]
+
+[node name="ScoreboardLabel" type="Label" parent="."]
+offset_right = 109.0
+offset_bottom = 49.0
+text = "Score: 0
+"
+script = ExtResource("1_jeshg")
