@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7q5rwvsk8nfp"]
 
-[ext_resource type="Script" uid="uid://bbgk3usbwhgnl" path="res://platform_spawner.gd" id="1_sltsi"]
+[ext_resource type="Script" uid="uid://bbgk3usbwhgnl" path="res://Spawners/platform_spawner.gd" id="1_sltsi"]
 
 [node name="PlatformSpawner" type="Node"]
 script = ExtResource("1_sltsi")

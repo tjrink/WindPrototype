@@ -1,7 +1,6 @@
 extends AnimatableBody2D
 
 # Exported variables that can be set by spawning script
-
 #Platform construction details
 @export var platform_width: float = 100.0 #Start x
 @export var platform_height: float = 50.0 #Start Y position
@@ -61,17 +60,12 @@ func _setup_initial_shapes():
 	
 	# Set a visible color 
 	var rect = $PlatformRect
-	rect.color = platform_color
-	
-			#Sets a minimum size where the player can stand on the platform to prevent camping in the center
-		#If the platform size falls under, collision logic is disabled until it is larger again
-		#TODO: Make platform disappear if under threshold and reappear above a threshold
-	
+	rect.color = platform_color	
 	
 	# Apply the initial width to all parts
 	_update_platform_size()
 
-# Updats size and location of all nodes in accordance with changing platform size
+# Updates size and location of all nodes in accordance with changing platform size
 func _update_platform_size():
 	#Width is clamped between boundary values to keep it from getting too large or small
 	platform_width = clamp(platform_width, min_width, max_width)
@@ -100,6 +94,7 @@ func shrink_platform(delta: float):
 		# Decrease width, of the platform
 		platform_width -= shrink_rate * delta
 	
+	#Makes the platform disappear and ends collision masking if below designated size
 	if platform_width < FALL_THRESHOLD:
 		collision_layer = 0
 		collision_mask = 0
@@ -112,6 +107,7 @@ func grow_platform(delta: float):
 	if platform_width < max_width:
 		platform_width += growth_rate * delta
 	
+	#Platform reappears if above specified size
 	if platform_width >= FALL_THRESHOLD:
 		collision_layer = 1
 		collision_mask = 1
