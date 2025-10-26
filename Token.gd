@@ -23,17 +23,17 @@ func _process(delta: float) -> void:
 
 func _setup_initial_shapes():
 	# Get references to child nodes
-	var sprite = $GearSprite
-	
+	var sprite = $TokenSprite	
 	sprite.scale = Vector2(scale_width, scale_height)
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if is_scorable:
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
 		game_score+=1
 		print(game_score)
-	
-	is_scorable = false
 
-func _on_area_exited(area: Area2D) -> void:
-	is_scorable = true
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		queue_free()

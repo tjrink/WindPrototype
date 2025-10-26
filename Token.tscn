@@ -1,22 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://cucy5oufcfliw"]
 
-[ext_resource type="Texture2D" uid="uid://bsx16580wb1i1" path="res://Sprites/Pretzel.png" id="1_u3nac"]
-[ext_resource type="Script" uid="uid://hakvmx0e36t8" path="res://Token.gd" id="1_y8ccp"]
+[ext_resource type="Script" uid="uid://hakvmx0e36t8" path="res://Token.gd" id="1_2r6w6"]
+[ext_resource type="Texture2D" uid="uid://bsx16580wb1i1" path="res://Sprites/Pretzel.png" id="2_0k6ug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8ccp"]
 radius = 39.0
 
-[node name="Gear" type="Area2D"]
-script = ExtResource("1_y8ccp")
+[node name="Token" type="Area2D"]
+script = ExtResource("1_2r6w6")
 x_position = 0.0
 y_position = 0.0
 
-[node name="GearSprite" type="Sprite2D" parent="."]
+[node name="TokenSprite" type="Sprite2D" parent="."]
 scale = Vector2(4.843755, 3.156255)
-texture = ExtResource("1_u3nac")
+texture = ExtResource("2_0k6ug")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="TokenCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y8ccp")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
