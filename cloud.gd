@@ -3,6 +3,13 @@ extends Node2D
 const LEFT_EDGE = 0
 const RIGHT_EDGE = 1200
 
+@export var starting_x: float
+@export var starting_y: float
+
+func _ready() -> void:
+	position.x = starting_x
+	position.y = starting_y
+
 
 func _process(delta: float) -> void:
 	#Gets wind speed for cloud at position y

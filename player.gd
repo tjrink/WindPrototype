@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Physics & Movement Constants
 const GRAVITY_FORCE = 800.0
 const BASE_SPEED = 300.0
-const BASE_JUMP = -750.0
+const BASE_JUMP = -550.0
 const AIR_DRAG_FACTOR = 0.3
 
 const SPRINT_DURATION = 1.5
@@ -42,9 +42,11 @@ func _physics_process(delta: float) -> void:
 
 	#Gets and applies wind force
 	var wind_force_x = Wind.get_wind_speed_at_y(position.y)
-	var wind_force_y = Wind.get_wind_speed_at_x(position.x)
+	
 	velocity.x = lerp(velocity.x, velocity.x + wind_force_x, 1000.0 * delta)
-	velocity.y = lerp(velocity.y, velocity.y + wind_force_y, 100.0 * delta)
+	
+#	var wind_force_y = Wind.get_wind_speed_at_x(position.x)
+#	velocity.y = lerp(velocity.y, velocity.y + wind_force_y, 100.0 * delta)
 	#Move player
 	move_and_slide()
 	
