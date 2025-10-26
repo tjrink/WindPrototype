@@ -41,10 +41,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0.0, current_speed)
 
 	#Gets and applies wind force
-	var wind_force = Wind.get_wind_speed_at_y(position.y)
-	print(wind_force)
-	velocity.x += (wind_force * AIR_DRAG_FACTOR) * delta
-	
+	var wind_force_x = Wind.get_wind_speed_at_y(position.y)
+	var wind_force_y = Wind.get_wind_speed_at_x(position.x)
+	velocity.x = lerp(velocity.x, velocity.x + wind_force_x, 1000.0 * delta)
+	velocity.y = lerp(velocity.y, velocity.y + wind_force_y, 100.0 * delta)
 	#Move player
 	move_and_slide()
 	

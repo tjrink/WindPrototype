@@ -96,9 +96,10 @@ func shrink_platform(delta: float):
 	
 	#Makes the platform disappear and ends collision masking if below designated size
 	if platform_width < FALL_THRESHOLD:
-		collision_layer = 0
-		collision_mask = 0
-		visible = false
+		#collision_layer = 0
+		#collision_mask = 0
+		#visible = false
+		queue_free()
 				
 	_update_platform_size()
 

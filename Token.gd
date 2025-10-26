@@ -33,7 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 	#Adds 1 to game_score if player enters token
 	if body.is_in_group("player"):
 		game_score+=1
-		print(game_score)
+		queue_free()
 
 func _on_body_exited(body: Node2D) -> void:
 	#Eliminates token when player exits
