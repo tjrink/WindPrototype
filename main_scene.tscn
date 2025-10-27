@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://0r11mqgi8vn5"]
+[gd_scene load_steps=7 format=3 uid="uid://0r11mqgi8vn5"]
 
 [ext_resource type="PackedScene" uid="uid://c7c0jvb7jhp1i" path="res://Spawners/cloud_spawner.tscn" id="1_2c62f"]
-[ext_resource type="PackedScene" uid="uid://boa1j05nc0hr8" path="res://scoreboard.tscn" id="1_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://b7q5rwvsk8nfp" path="res://Spawners/platform_spawner.tscn" id="2_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://boee26h6hv02k" path="res://player.tscn" id="3_gyfs4"]
 [ext_resource type="Script" uid="uid://bv2q3rfo8o35y" path="res://Spawners/token_spawner.gd" id="4_d5x1h"]
@@ -14,8 +13,6 @@ size = Vector2(3000, 60)
 metadata/_edit_vertical_guides_ = [-547.0]
 
 [node name="World" type="Node2D" parent="."]
-
-[node name="Scoreboard" parent="World" instance=ExtResource("1_hq1ik")]
 
 [node name="Sky" type="ColorRect" parent="World"]
 z_index = -101

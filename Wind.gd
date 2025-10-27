@@ -7,7 +7,7 @@ const MAX_Y: float = 300
 const MIN_X: float = -650
 const MAX_X: float = 650
 
-const MAX_WIND: float = 30.0
+const MAX_WIND: float = 10.0
 
 
 # Define the wind tranches: [Max Y (bottom of tranche), Wind Speed]

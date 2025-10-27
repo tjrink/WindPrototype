@@ -5,8 +5,6 @@ extends Area2D
 @export var x_position: float = 200.0
 @export var y_position: float = 100.0
 
-@export var game_score: int = 0
-
 var is_scorable: bool = true
 
 var sprite_shape
@@ -32,7 +30,7 @@ func _setup_initial_shapes():
 func _on_body_entered(body: Node2D) -> void:
 	#Adds 1 to game_score if player enters token
 	if body.is_in_group("player"):
-		game_score+=1
+		Global.game_score+=1
 		queue_free()
 
 func _on_body_exited(body: Node2D) -> void:
