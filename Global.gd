@@ -12,3 +12,7 @@ func _ready() -> void:
 	var player_scene = preload("res://player.tscn")
 	var player_instance = player_scene.instantiate()
 	add_child(player_instance)
+	
+	var ground_scene = preload("res://ground.tscn")
+	var ground_instance = ground_scene.instantiate()
+	add_child(ground_instance)

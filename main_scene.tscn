@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://0r11mqgi8vn5"]
+[gd_scene load_steps=5 format=3 uid="uid://0r11mqgi8vn5"]
 
 [ext_resource type="PackedScene" uid="uid://c7c0jvb7jhp1i" path="res://Spawners/cloud_spawner.tscn" id="1_2c62f"]
-[ext_resource type="Script" uid="uid://bamngfigtlot2" path="res://area_2d.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://b7q5rwvsk8nfp" path="res://Spawners/platform_spawner.tscn" id="2_gyfs4"]
 [ext_resource type="Script" uid="uid://bv2q3rfo8o35y" path="res://Spawners/token_spawner.gd" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://duis0iioy3w7p" path="res://wind.tscn" id="5_hq1ik"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
-size = Vector2(3000, 60)
 
 [node name="MainScene" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-547.0]
@@ -23,29 +19,6 @@ offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.5294118, 0.80784315, 0.92156863, 1)
 
-[node name="Ground" type="StaticBody2D" parent="World"]
-
-[node name="GroundColor" type="ColorRect" parent="World/Ground"]
-custom_minimum_size = Vector2(1280, 60)
-offset_left = -1500.0
-offset_top = 300.0
-offset_right = 1500.0
-offset_bottom = 360.0
-color = Color(0.07450981, 0.42745098, 0.08235294, 1)
-
-[node name="GroundCollision" type="CollisionShape2D" parent="World/Ground"]
-position = Vector2(0, 330)
-shape = SubResource("RectangleShape2D_2c62f")
-debug_color = Color(0.20361105, 0.6193439, 0.4730158, 0.41960785)
-
-[node name="Area2D" type="Area2D" parent="World/Ground"]
-script = ExtResource("1_8mm7a")
-
-[node name="GroundCollision2" type="CollisionShape2D" parent="World/Ground/Area2D"]
-position = Vector2(0, 330)
-shape = SubResource("RectangleShape2D_2c62f")
-debug_color = Color(0.9104701, 0.19811219, 0.5588026, 0.41960785)
-
 [node name="CloudSpawner" parent="World" instance=ExtResource("1_2c62f")]
 
 [node name="PlatformSpawner" parent="World" instance=ExtResource("2_gyfs4")]
@@ -56,5 +29,3 @@ script = ExtResource("4_d5x1h")
 [node name="Wind" parent="World" instance=ExtResource("5_hq1ik")]
 
 [node name="Camera" type="Camera2D" parent="."]
-
-[connection signal="body_entered" from="World/Ground/Area2D" to="World/Ground/Area2D" method="_on_body_entered"]
