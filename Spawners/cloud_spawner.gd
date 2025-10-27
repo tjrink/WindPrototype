@@ -19,9 +19,13 @@ func _process(delta: float) -> void:
 func spawn_cloud() -> void:
 	##Creates a cloud at a random position
 	var cloud_instance = CLOUD_SCENE.instantiate()
-	cloud_instance.starting_x = randf_range(0, 1200)
+	cloud_instance.starting_x = randf_range(-600, 600)
 	cloud_instance.starting_y = randf_range(-300, 300)
 	cloud_instance.z_index = -100
 
 	#Add cloud to scene tree
 	get_parent().add_child(cloud_instance)
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

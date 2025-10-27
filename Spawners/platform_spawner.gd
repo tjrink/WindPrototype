@@ -4,40 +4,6 @@ extends Node
 const PLATFORM_SCENE = preload("res://platform.tscn")
 
 # Define the level layout data using FLOAT values (e.g., 50.0 instead of 50)
-# NOTE: Y coordinates - smaller Y = higher on screen
-# Ground is at Y=300, so platforms should be ABOVE that (smaller Y values)
-#const PLATFORM_DATA = [
-	## Platform 1: Near the player position for easy testing
-	#{ 
-		#"x": 0.0,      # Center of screen
-		#"y": 0.0,    # Above ground (ground is at 300)
-		#"width":100.0, 
-		#"height": 50.0, 
-		#"travel": 200.0, 
-		#"speed": 2.0,
-		#"color": Color(0.6, 0.4, 0.2, 1.0)
-	#}, 
-	## Platform 2: To the right
-	#{ 
-		#"x": 400.0, 
-		#"y": 100.0,    # Higher up
-		#"width": 200.0, 
-		#"height": 50.0, 
-		#"travel": 100.0, 
-		#"speed": 0.5,
-		#"color": Color(0.6, 0.4, 0.2, 1.0) 
-	#},
-	## Platform 3: To the left
-	#{ 
-		#"x": -400.0, 
-		#"y": 0.0,    # Mid height
-		#"width": 100.0, 
-		#"height": 50.0, 
-		#"travel": 75.0, 
-		#"speed": 1.5,
-		#"color": Color(0.6, 0.4, 0.2, 1.0)
-	#}
-#]
 
 const PLATFORM_DATA = [
 	{
@@ -59,6 +25,11 @@ const PLATFORM_DATA = [
 		"profile_path": "res://PlatformClasses/BrownPlatform.tres",
 		"x": -100,
 		"y": 0
+	},
+	{
+		"profile_path": "res://PlatformClasses/RedPlatform.tres",
+		"x": -350,
+		"y": -100
 	}
 ]
 

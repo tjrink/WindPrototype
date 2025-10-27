@@ -1,7 +1,7 @@
 extends Node2D
 
-const LEFT_EDGE = 0
-const RIGHT_EDGE = 1200
+const LEFT_EDGE = -600
+const RIGHT_EDGE = 600
 
 @export var starting_x: float
 @export var starting_y: float
