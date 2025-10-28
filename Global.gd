@@ -16,3 +16,5 @@ func _ready() -> void:
 	var ground_scene = preload("res://ground.tscn")
 	var ground_instance = ground_scene.instantiate()
 	add_child(ground_instance)
+	
+	

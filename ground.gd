@@ -12,6 +12,7 @@ extends StaticBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Create new ColorRect object to display the ground
+	position = Vector2(ground_x, ground_y)
 	var color_rect = ColorRect.new()
 	color_rect.size = Vector2(ground_width, ground_height)
 	color_rect.color = ground_color
