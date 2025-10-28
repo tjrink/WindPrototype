@@ -11,16 +11,19 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	
 	# Set the ground's position
 	position = Vector2(ground_x, ground_y)
-	
+		
 	# Create new ColorRect object to display the ground
 	var color_rect = ColorRect.new()
 	color_rect.size = Vector2(ground_width, ground_height)
 	color_rect.position = Vector2(-ground_width / 2, -ground_height / 2)  # Center it
 	color_rect.color = ground_color
+	color_rect.z_index = 10  # Make sure it's above the sky
 	add_child(color_rect)
-	
+		
 	# Create collision shape for the ground (for solid collision)
 	var ground_collision = CollisionShape2D.new()
 	var collision_shape = RectangleShape2D.new()
@@ -32,7 +35,7 @@ func _ready() -> void:
 	var ground_area = Area2D.new()
 	var ground_area_collision = CollisionShape2D.new()
 	var ground_area_collision_shape = RectangleShape2D.new()
-	ground_area_collision_shape.size = Vector2(ground_width, ground_height)
+	ground_area_collision_shape.size = Vector2(ground_width, ground_height+1)
 	ground_area_collision.shape = ground_area_collision_shape
 	ground_area.add_child(ground_area_collision)
 	
@@ -44,6 +47,7 @@ func _ready() -> void:
 
 # Called when a body enters the ground area
 func _on_body_entered(body: Node2D) -> void:
+	print("Body entered ground area: ", body.name)
 	if body.is_in_group("player"):
 		print("Player landed on ground!")
 

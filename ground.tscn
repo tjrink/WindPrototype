@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dk5wg1l71ruor"]
+[gd_scene load_steps=2 format=3 uid="uid://dk5wg1l71ruor"]
+
+[ext_resource type="Script" uid="uid://2btumwxtrioy" path="res://ground.gd" id="1_yh8r4"]
 
 [node name="Ground" type="StaticBody2D"]
+script = ExtResource("1_yh8r4")

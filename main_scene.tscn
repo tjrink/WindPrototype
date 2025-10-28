@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://0r11mqgi8vn5"]
+[gd_scene load_steps=5 format=3 uid="uid://0r11mqgi8vn5"]
 
 [ext_resource type="PackedScene" uid="uid://c7c0jvb7jhp1i" path="res://Spawners/cloud_spawner.tscn" id="1_2c62f"]
-[ext_resource type="PackedScene" uid="uid://dk5wg1l71ruor" path="res://ground.tscn" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://b7q5rwvsk8nfp" path="res://Spawners/platform_spawner.tscn" id="2_gyfs4"]
 [ext_resource type="Script" uid="uid://bv2q3rfo8o35y" path="res://Spawners/token_spawner.gd" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://duis0iioy3w7p" path="res://wind.tscn" id="5_hq1ik"]
@@ -19,8 +18,6 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.5294118, 0.80784315, 0.92156863, 1)
-
-[node name="Ground" parent="World" instance=ExtResource("1_8mm7a")]
 
 [node name="CloudSpawner" parent="World" instance=ExtResource("1_2c62f")]
 
