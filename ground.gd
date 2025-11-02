@@ -8,6 +8,9 @@ extends StaticBody2D
 
 @export var ground_color: Color = Color(0.545, 0.271, 0.075, 1)  # Brown ground color
 
+@export var ground_strength: float = 100.0
+var has_body_on: bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,17 +44,28 @@ func _ready() -> void:
 	
 	# Connect the Area2D signal
 	ground_area.body_entered.connect(_on_body_entered)
-	
+	ground_area.body_entered.connect(_on_body_exited)
 	add_child(ground_area)
 
 
 # Called when a body enters the ground area
 func _on_body_entered(body: Node2D) -> void:
-	print("Body entered ground area: ", body.name)
+		if body.is_in_group("player"):
+			has_body_on = true
+		
+func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Player landed on ground!")
-
+		has_body_on = false
+		print("Exited")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if has_body_on:
+		ground_strength-=1
+		
+	if ground_strength < 0:
+		position.y+=1
+		
+	if position.y > 500:
+		queue_free()

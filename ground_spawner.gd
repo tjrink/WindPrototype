@@ -27,10 +27,10 @@ func spawn_all_ground():
 		var rand_red = randf_range(0.50, 0.60)
 		var rand_blue = randf_range(0.1, 0.4)
 		var rand_green = randf_range(0.0, 0.1)
-		ground_instance.ground_x = index_x
-		ground_instance.ground_width = rand_width		
-		ground_instance.ground_color = Color(rand_red, rand_blue, rand_green, 1)
 		
+		ground_instance.ground_x = index_x + rand_width / 2.0
+		ground_instance.ground_width = rand_width		
+		ground_instance.ground_color = Color(rand_red, rand_green, rand_blue, 1)	
 		
 		parent.add_child(ground_instance)
 		
