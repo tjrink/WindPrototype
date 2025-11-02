@@ -35,7 +35,7 @@ func _ready() -> void:
 	var ground_area = Area2D.new()
 	var ground_area_collision = CollisionShape2D.new()
 	var ground_area_collision_shape = RectangleShape2D.new()
-	ground_area_collision_shape.size = Vector2(ground_width, ground_height+1)
+	ground_area_collision_shape.size = Vector2(ground_width, ground_height+1) #Ground area is offset by 1 to ensure landing is tracked
 	ground_area_collision.shape = ground_area_collision_shape
 	ground_area.add_child(ground_area_collision)
 	

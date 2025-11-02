@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	#Randomly generates a new cloud
-	if randi_range(1, 100) == 50:
+	if randi_range(1, 500) == 50:
 		spawn_cloud()
 
 
