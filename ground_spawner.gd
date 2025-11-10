@@ -24,9 +24,9 @@ func spawn_all_ground():
 	while (index_x <= max_x):
 		var ground_instance = ground_scene.instantiate()
 		var rand_width = randi_range(10, 250)
-		var rand_red = randf_range(0.50, 0.60)
-		var rand_blue = randf_range(0.1, 0.4)
-		var rand_green = randf_range(0.0, 0.1)
+		var rand_red = randf_range(0.55, 0.70)
+		var rand_blue = randf_range(0.05, 0.2)
+		var rand_green = randf_range(0.35, 0.5)
 		
 		ground_instance.ground_x = index_x + rand_width / 2.0
 		ground_instance.ground_width = rand_width		
