@@ -8,6 +8,7 @@ func _ready() -> void:
 	$Panel/VBoxContainer/ScoreLabel.text = "Final Score: " + str(Global.game_score)
 
 func _on_restart_button_pressed() -> void:
+	print("Reset pressed")
 	# Reset game state
 	Global.game_score = 0
 	Global.is_game_over = false
