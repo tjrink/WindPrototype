@@ -8,11 +8,15 @@ func _ready() -> void:
 	$Panel/VBoxContainer/ScoreLabel.text = "Final Score: " + str(Global.game_score)
 
 func _on_restart_button_pressed() -> void:
-	print("Reset pressed")
-	# Reset game state
-	Global.game_score = 0
-	Global.is_game_over = false
+	print("Restart pressed")
+	
+	# Unpause first
 	get_tree().paused = false
+	
+	# Reset game state in Global
+	Global.reset_game()
+	
+	# Reload the scene
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed() -> void:
