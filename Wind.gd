@@ -1,6 +1,5 @@
 extends Node
 
-
 const MIN_Y: float = -350.0
 const MAX_Y: float = 300
 
@@ -9,34 +8,34 @@ const MAX_X: float = 650
 
 const MAX_WIND: float = 10.0
 
-
 # Define the wind tranches: [Max Y (bottom of tranche), Wind Speed]
 var WIND_TRANCHES_HORIZONTAL = []
 var WIND_TRANCHES_VERTICAL = []
+
 func _ready() -> void:
 	generate_tranches()
 
-
+func reset_wind():
+	# Clear existing tranches
+	WIND_TRANCHES_HORIZONTAL.clear()
+	WIND_TRANCHES_VERTICAL.clear()
+	
+	# Generate new tranches
+	generate_tranches()
 
 func generate_tranches():
 	randomize()
 	
-	#Sets the base wind speed
-	#The higher the absolute value of the wind, the stronger it blows
-	#Negative wind blows left, positive to the right
-	var base_wind = randf_range(-MAX_WIND, MAX_WIND) #Sets a base wind value
-	base_wind = 20
-	#Performs base tranche generation
-	#Each generation uses the following pattern:
-	#Index is set at the lowest possible value
-	#Generates a random breaking point between the index and maximum value
-	#Makes a small change to the base wind and resets the base wind and index values
-	#Repeats until past maximum value
+	# Sets the base wind speed
+	# The higher the absolute value of the wind, the stronger it blows
+	# Negative wind blows left, positive to the right
+	var base_wind = randf_range(-MAX_WIND, MAX_WIND) # Sets a base wind value
+	
+	# Performs base tranche generation
 	generate_horizontal_tranches(base_wind)
 	generate_vertical_tranches(base_wind)
 			
 func generate_horizontal_tranches(base_wind):
-	
 	var idx_horizontal = MIN_Y
 	
 	while idx_horizontal < MAX_Y:
@@ -56,7 +55,7 @@ func generate_vertical_tranches(base_wind):
 		
 		idx_vertical = tranche_start
 
-#Returns the wind speed at given y position
+# Returns the wind speed at given y position
 func get_wind_speed_at_y(y_position: float) -> float:
 	for tranche in WIND_TRANCHES_HORIZONTAL:
 		var min_y = tranche[0]
@@ -69,7 +68,7 @@ func get_wind_speed_at_y(y_position: float) -> float:
 	# Default return if position is outside defined tranches
 	return 0.0
 
-#Returns the wind speed at given xposition
+# Returns the wind speed at given x position
 func get_wind_speed_at_x(x_position: float) -> float:
 	for tranche in WIND_TRANCHES_VERTICAL:
 		var min_x = tranche[0]
