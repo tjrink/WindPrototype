@@ -25,7 +25,7 @@ func generate_tranches():
 	#The higher the absolute value of the wind, the stronger it blows
 	#Negative wind blows left, positive to the right
 	var base_wind = randf_range(-MAX_WIND, MAX_WIND) #Sets a base wind value
-	
+	base_wind = 20
 	#Performs base tranche generation
 	#Each generation uses the following pattern:
 	#Index is set at the lowest possible value

@@ -2,7 +2,9 @@ extends Node
 
 
 @export var game_score: int = 0
+var is_game_over: bool = false
 
+var game_over_scene = preload("res://game_over.tscn")
 
 func _ready() -> void:
 	
@@ -31,3 +33,11 @@ func _ready() -> void:
 	var player_scene = preload("res://player.tscn")
 	var player_instance = player_scene.instantiate()
 	parent.add_child(player_instance)
+
+func trigger_game_over():
+	if is_game_over:
+		return 
+	is_game_over = true
+	
+	var game_over_instance = game_over_scene.instantiate()
+	add_child(game_over_instance)

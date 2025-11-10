@@ -15,6 +15,12 @@ var sprints_available: int = 2
 
 func _physics_process(delta: float) -> void:
 	#Gravity
+	if position.y > 400:
+		Global.trigger_game_over()
+		set_physics_process(false)
+		return
+		
+	
 	if not is_on_floor():
 		velocity.y += GRAVITY_FORCE * delta
 	else:
